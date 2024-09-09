@@ -6,12 +6,15 @@ class MainButtons extends StatelessWidget {
   final String subtitle;
   final String chipsToWage;
   
+  final dynamic ontaped;
+  
 
   const MainButtons({
     super.key,
     required this.title,
     required this.subtitle,
-    required this.chipsToWage,
+    required this.chipsToWage, 
+    required  this.ontaped,
     
   });
 
@@ -20,31 +23,35 @@ class MainButtons extends StatelessWidget {
     return 
     Card(
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-
+     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
      elevation: 5,
      child:
       ElevatedButton(
-        iconAlignment: IconAlignment.start,
-        onPressed: ontap,
+        onPressed: ontaped,
         child: Row(
-          
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+       
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
             const SizedBox(
               child: Icon(Icons.arrow_back),
             ), 
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('TitleText $title', style: TextStyle( fontSize:FontConstants.fweight_Title)),
+               
+                Text(title, style: TextStyle( 
+          
+                  fontSize:FontConstants.fweight_Title)),
                const Divider(
                   height: 10,
                   thickness: 25,
                   color: Colors.black,
                 ),
-                Text('SubTitleText1 $subtitle',  style: TextStyle(fontSize: FontConstants.fweight_SubTitle)),
-                Text('SubTitleText2 $chipsToWage',  style: TextStyle(fontSize: FontConstants.fweight_Chips)),
+                Text( subtitle,  style: TextStyle(fontSize: FontConstants.fweight_SubTitle)),
+                Text(chipsToWage,  style: TextStyle(fontSize: FontConstants.fweight_Chips)),
               ],
             ),
           ],

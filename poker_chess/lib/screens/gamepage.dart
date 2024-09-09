@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:bishop/bishop.dart' as bishop;
-import 'package:poker_chess/components.dart/menu_bar.dart';
 import 'package:poker_chess/components.dart/player_ingame_card.dart';
 import 'package:squares/squares.dart';
 import 'package:square_bishop/square_bishop.dart';
