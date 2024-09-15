@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:poker_chess/providers/game_controller.dart';
-import 'package:poker_chess/providers/auth_controller.dart';
-import 'package:poker_chess/providers/player_controller.dart'; // Replace with actual paths
 
 class CustomgameScreen extends StatefulWidget {
   const CustomgameScreen({super.key});
@@ -16,8 +14,7 @@ class CustomgameScreenState extends State<CustomgameScreen> {
   Widget build(BuildContext context) {
     // Reading values from providers
     final gameController = context.watch<GameController>();
-    final authController = context.watch<AuthController>();
-    final playerController = context.watch<PlayerController>();
+
 
     return Scaffold(
       appBar: AppBar(

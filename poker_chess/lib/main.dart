@@ -5,12 +5,9 @@ import 'package:poker_chess/providers/game_controller.dart';
 import 'package:poker_chess/providers/player_controller.dart';
 import 'package:poker_chess/screens/customParty.dart';
 import 'package:poker_chess/screens/gamepage.dart';
-import 'package:poker_chess/screens/history_games.dart';
 import 'package:poker_chess/screens/home_page.dart';
-import 'package:poker_chess/screens/multiplayers.dart';
-import 'package:poker_chess/screens/puzzlesPage.dart';
-import 'package:poker_chess/screens/settings_page.dart';
-import 'package:poker_chess/screens/vsComputer.dart';
+import 'package:poker_chess/screens/vscomputer.dart';
+import 'package:poker_chess/providers/setting_controller.dart';
 import 'package:provider/provider.dart';
 
 
@@ -19,11 +16,11 @@ void main() {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (_) => GameController()),
-      ChangeNotifierProvider(create: (_) => PlayerController()),
       ChangeNotifierProvider(create: (_) => AuthController()),
-      
+      ChangeNotifierProvider(create: (_) => PlayerController()),
+      ChangeNotifierProvider(create: (_) => SettingController()),
     ],
-    child:const MyApp())
+    child: MyApp())
     );
 }
 
@@ -45,11 +42,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Constants.homeScreen: (context) => const HomePage(),
         Constants.gameScreen: (context) => const Gamepage(),
-        Constants.settingsScreen: (context) => const SettingsScreen(),
         Constants.customgameScreen: (context) => const CustomgameScreen(),
-       Constants.multiplayerScreen: (context) => const MultiPlayerPage(),
-       Constants.historyScreen: (context) => const HistoryScreen(),
-         Constants.puzzleScreen: (context) => const PuzzleScreen(),
         Constants.vsComnpScreen: (context) => const VsComnpcScreen(),
       },
     );

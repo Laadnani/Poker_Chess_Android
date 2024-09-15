@@ -1,5 +1,7 @@
 
- class Constants {
+ import 'package:flutter/material.dart';
+
+class Constants {
 
   static  String get _userid => "Player 1";
   static  String  get _username => "username";
@@ -54,4 +56,20 @@ class FontConstants {
   static double fweight_Title = 35;
   static double fweight_SubTitle = 20;
   static double fweight_Chips = 15;
+}
+
+class ColorConstants {
+  // Primary Light Colors
+  static const Color primaryColorLight1 = Color(0xEE211A1D); // 93% opacity
+  static const Color primaryColorLight5 = Color(0xEE07393C); // 93% opacity
+  static const Color primaryColorLight2 = Color(0xEE6320EE); // 93% opacity
+  static const Color primaryColorLight3 = Color(0xEE8075FF); // 93% opacity
+  static const Color primaryColorLight4 = Color(0xEECAD5CA); // 93% opacity
+
+  // Primary Dark Colors
+  static const Color primaryColorDark1 = Color(0xEE0A090C); // 93% opacity
+  static const Color primaryColorDark2 = Color(0xEEF0EDEE); // 93% opacity
+  static const Color primaryColorDark3 = Color(0xEE07393C); // 93% opacity
+  static const Color primaryColorDark4 = Color(0xEE90DDF0); // 93% opacity
+  static const Color primaryColorDark5 = Color(0xEE2C666E); // 93% opacity
 }

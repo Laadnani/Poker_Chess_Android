@@ -3,7 +3,6 @@ import 'package:poker_chess/components.dart/mainbuttonns.dart';
 import 'package:poker_chess/components.dart/menu_bar.dart';
 import 'package:poker_chess/constants.dart';
 import 'package:poker_chess/providers/game_controller.dart';
-import 'package:poker_chess/screens/gamepage.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,6 +13,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+   @override
+ 
   @override
   Widget build(BuildContext context) {
     final gameController = context.read<GameController>();
@@ -42,8 +43,6 @@ class HomePageState extends State<HomePage> {
                         gameController.opponentvalue = Constants.multiPlayerButtontitle;
                         // Navigate to home page
                         Navigator.pushNamed(context, Constants.multiplayerScreen);
-                        print('it should be navigating to game page then asserting the opponent value \n to ${Constants.vsComputerSub}');
-                        print(gameController.opponent);
                       }
                        ),
                   MainButtons(

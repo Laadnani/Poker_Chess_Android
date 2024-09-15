@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:poker_chess/components.dart/gamepicker.dart';
+import 'package:poker_chess/components.dart/games.dart';
 import 'package:provider/provider.dart';
 import 'package:poker_chess/providers/game_controller.dart';
 import 'package:poker_chess/providers/auth_controller.dart';
@@ -21,37 +23,16 @@ class VsComnpcScreenState extends State<VsComnpcScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Page Title'),
+        title: Text('Opponent: ${gameController.opponent}'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Displaying provider values
-            Text('Opponent: ${gameController.opponent}'),
+      
+             TimeCards(),
+             SizedBox(height: 20),
 
-            const SizedBox(height: 20),
-
-            // Buttons to interact with providers
-            ElevatedButton(
-              onPressed: () {
-                // Updating the GameController
-                gameController.opponentvalue = 'New Opponent';
-              },
-              child: const Text('Set New Opponent'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Updating the AuthController
-              },
-              child: const Text('Set New User'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // Updating the PlayerController
-              },
-              child: const Text('Update Player Score'),
-            ),
           ],
         ),
       ),
