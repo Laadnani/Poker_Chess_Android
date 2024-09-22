@@ -2,6 +2,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:bishop/bishop.dart' as bishop;
 import 'package:poker_chess/components.dart/player_ingame_card.dart';
+import 'package:poker_chess/providers/game_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:squares/squares.dart';
 import 'package:square_bishop/square_bishop.dart';
 import 'package:poker_chess/constants.dart';
@@ -25,6 +27,7 @@ late bishop.Game game;
 
   @override
   void initState() {
+
     _resetGame(false);
     super.initState();
   }
@@ -41,6 +44,7 @@ late bishop.Game game;
     bool result = game.makeSquaresMove(move);
     if (result) {
       setState(() => state = game.squaresState(player));
+     
     }
     if (state.state == PlayState.theirTurn && !aiThinking) {
       setState(() => aiThinking = true);
@@ -56,22 +60,29 @@ late bishop.Game game;
 
   @override
   Widget build(BuildContext context) {
+    return Consumer<GameController>(
+
+      builder: (context, provider, child) {
+        // Access the timing value using provider.timing
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('Poker Chess'),
       ),
-      body: Center ( 
+      body:  Center ( 
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
         
-             const PlayerIngameCard(
+              PlayerIngameCard(
             username: 'Stockfish',
            userIcon: Constants.stockfishpicture,
-             userChips: '10000000'),
+             userChips: provider.extractFirstWord(provider.chips),
+             timing: provider.gameTime,
+             ),
 
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding:  EdgeInsets.all(4.0),
               child: BoardController(
                 state: flipBoard ? state.board.flipped() : state.board,
                 playState: state.state,
@@ -87,13 +98,26 @@ late bishop.Game game;
                 promotionBehaviour: PromotionBehaviour.autoPremove,
               ),
             ),
-             const PlayerIngameCard(
+                PlayerIngameCard (
               username: 'Myself',
               userIcon: Constants.playerIcon,
-              userChips: '10000000'), 
+              userChips: provider.extractFirstWord(provider.chips),
+              timing: provider.gameTime,
+          ), 
+              ElevatedButton(onPressed: () {
+                    // ignore: avoid_print
+                    print('Selected Time: ${provider.timing}');
+                    print('Selected Time: ${provider.addedTime}');
+                    print('Selected Time: ${provider.chips}');
+                    print('Selected Time: ${provider.gameLevel}');
+                    
+
+           
+              }, child:const Center(child: Text('New Game'))),
           ]
       )
     )
     );
-  }
-}
+  });
+} 
+ }

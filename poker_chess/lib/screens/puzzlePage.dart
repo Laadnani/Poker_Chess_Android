@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:poker_chess/providers/game_controller.dart';
+
+class PuzzleScreen extends StatefulWidget {
+  const PuzzleScreen({super.key});
+
+  @override
+  PuzzleScreenState createState() => PuzzleScreenState();
+}
+
+class PuzzleScreenState extends State<PuzzleScreen> {
+  @override
+  Widget build(BuildContext context) {
+    // Reading values from providers
+    final gameController = context.watch<GameController>();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Puzzles'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Displaying provider values
+            Text('Opponent: ${gameController.opponent}'),
+
+            const SizedBox(height: 20),
+
+            // Buttons to interact with providers
+            ElevatedButton(
+              onPressed: () {
+                // Updating the GameController
+                gameController.opponentvalue = 'New Opponent';
+              },
+              child: const Text('Set New Opponent'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Updating the AuthController
+              },
+              child: const Text('Set New User'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // Updating the PlayerController
+              },
+              child: const Text('Update Player Score'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

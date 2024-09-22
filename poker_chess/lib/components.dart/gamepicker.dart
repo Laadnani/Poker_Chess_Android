@@ -2,7 +2,9 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:poker_chess/components.dart/games.dart';
 import 'package:poker_chess/constants.dart';
+import 'package:poker_chess/providers/game_controller.dart';
 import 'package:poker_chess/screens/gamepage.dart';
+import 'package:provider/provider.dart';
 
 class TimeCards extends StatefulWidget {
   const TimeCards({super.key});
@@ -20,6 +22,8 @@ class _TimeCardsState extends State<TimeCards> {
 
   @override
   Widget build(BuildContext context) {
+      return Consumer<GameController>(
+      builder: (context, provider, child) {
     return Container(
       // Replace Expanded with Container or SizedBox
       padding: const EdgeInsets.all(10),
@@ -69,10 +73,12 @@ class _TimeCardsState extends State<TimeCards> {
                   onChanged: (value) {
                     setState(() {
                       selectedTime = value ?? ''; // Set the selected value
+                      
                     });
                   },
                   onSaved: (value) {
                     selectedTime = value ?? '';
+                  
                   },
                 ),
               ),
@@ -151,6 +157,7 @@ class _TimeCardsState extends State<TimeCards> {
                   onChanged: (value) {
                     setState(() {
                       selectedAmount = value ?? '';
+                      
                     });
                   },
                   onSaved: (value) {
@@ -229,10 +236,10 @@ class _TimeCardsState extends State<TimeCards> {
                     shadowColor: Colors.amber,
                     backgroundColor: Colors.amber),
                     onPressed: () {
-                        print('Selected Time: $selectedTime');
-                      print('Selected Chips: $selectedAmount');
-                      print('Extra Time: $hasExtra');
-                      print('Game Level: $gameLevel');
+                         provider.timing = selectedTime;
+                         provider.addedTime = hasExtra;
+                         provider.chips = selectedAmount;
+                         provider.gameLevel = gameLevel;
                       Navigator.pushNamed(
                         context,
                         Constants.gameScreen,
@@ -253,5 +260,6 @@ class _TimeCardsState extends State<TimeCards> {
         ],
       ),
     );
-  }
+  });
+}
 }

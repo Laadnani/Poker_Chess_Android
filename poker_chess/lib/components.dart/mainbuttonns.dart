@@ -5,7 +5,7 @@ class MainButtons extends StatelessWidget {
   final String title;
   final String subtitle;
   final String chipsToWage;
-  
+  final bool isDisabled;
   final dynamic ontaped;
   
 
@@ -14,6 +14,7 @@ class MainButtons extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.chipsToWage, 
+    required this.isDisabled,
     required  this.ontaped,
     
   });
@@ -22,21 +23,24 @@ class MainButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return 
     Card(
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+      surfaceTintColor: Colors.white54,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
      elevation: 5,
      child:
-      ElevatedButton(
-        onPressed: ontaped,
+      ElevatedButton( 
+        onPressed:  isDisabled? null : ontaped,
+       style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5),
+                    )),
         child: Row(
        
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             
-            const SizedBox(
-              child: Icon(Icons.arrow_back),
-            ), 
+           
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,

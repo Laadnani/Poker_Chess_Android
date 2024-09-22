@@ -29,6 +29,9 @@ class HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               flex: 10,
               child: ListView(
@@ -36,19 +39,23 @@ class HomePageState extends State<HomePage> {
                     const EdgeInsets.symmetric(horizontal: 8.0, vertical: 25.0),
                 children:  [
                   MainButtons(
+                      isDisabled: true,
                       title: Constants.multiPlayerButtontitle,
                       subtitle: Constants.multiPlayerButtonsub,
                       chipsToWage: Constants.multiPlayerButtonchips,
                       ontaped: () {
                         gameController.opponentvalue = Constants.multiPlayerButtontitle;
                         // Navigate to home page
-                        Navigator.pushNamed(context, Constants.multiplayerScreen);
+                       const AlertDialog(
+                          title: Text('Coming Soon'),
+                        );
                       }
                        ),
                   MainButtons(
                     title: Constants.vsComputerTitle,
                     subtitle: Constants.vsComputerSub,
                     chipsToWage: Constants.vsComputerChips,
+                    isDisabled: false,
                      ontaped: () {
                         gameController.opponentvalue = Constants.vsComputerTitle;
                         // Navigate to home page
@@ -56,9 +63,10 @@ class HomePageState extends State<HomePage> {
                       }
                   ),
                   MainButtons(
+                    isDisabled: false,
                     title: Constants.puzzlesTitle,
                     subtitle: Constants.puzzlesSub,
-                    chipsToWage: Constants.vsComputerChips,
+                    chipsToWage: Constants.puzzlesChips,
                      ontaped: () {
                         gameController.opponentvalue = Constants.vsComputerTitle;
                         // Navigate to home page
@@ -66,13 +74,14 @@ class HomePageState extends State<HomePage> {
                       }
                   ),
                   MainButtons(
+                    isDisabled: false,
                     title: Constants.customGameTitle,
                     subtitle: Constants.customGameSub,
                     chipsToWage: Constants.customGameChips,
                      ontaped: () {
                         gameController.opponentvalue = Constants.vsComputerTitle;
                         // Navigate to home page
-                        Navigator.pushNamed(context, Constants.customgameScreen);
+                        Navigator.pushNamed(context, Constants.timer);
                       }
                   ),
                 ],

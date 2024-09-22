@@ -107,14 +107,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_timer_widget:
-    dependency: "direct main"
-    description:
-      name: flutter_timer_widget
-      sha256: "133a5509aca0aad4631d40a096f3dcd4be2d677929a73d07c9897b583a047997"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.2"
   leak_tracker:
     dependency: transitive
     description:
@@ -264,6 +256,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  timer_count_down:
+    dependency: "direct main"
+    description:
+      name: timer_count_down
+      sha256: d025d408c2654e497ca0bd4bde014bd7509d4c6397af4ed23a0f9b692bbcf337
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.2"
   vector_math:
     dependency: transitive
     description:
