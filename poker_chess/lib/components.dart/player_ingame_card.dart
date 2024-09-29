@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:ffi';
-
+import 'package:timer_count_down/timer_controller.dart';
+import 'package:vibration/vibration.dart';
+import 'package:timer_count_down/timer_count_down.dart';
 import 'package:flutter/material.dart';
 //import 'package:poker_chess/components.dart/timer.dart';
 
@@ -8,9 +10,12 @@ class PlayerIngameCard extends StatelessWidget {
   final String username;
   final String userIcon;
   final String userChips;
-  final String timing;
+  final int timing;
 
-  const PlayerIngameCard({
+  final CountdownController _controller = CountdownController(autoStart: false);
+ 
+
+   PlayerIngameCard({
     super.key,
     required this.username,
     required this.userIcon,
@@ -50,10 +55,20 @@ class PlayerIngameCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: TimerWidget(
-                     initialMinutes: int.parse(timing[0]),
-                     initialSeconds: 0,
-                     isRunning: false),
+                  child: Countdown(
+                    controller: _controller,
+                    seconds: timing ,
+                     build: (_, double time) => Text(
+                      time.toString(),
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    interval: const Duration(microseconds: 100),
+                    onFinished: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Timer is done!')),
+                      );
+                    },
+                  ),
                 )
               ],
             ),
@@ -67,71 +82,3 @@ class PlayerIngameCard extends StatelessWidget {
 
 
 
-class TimerWidget extends StatefulWidget {
-  final int initialMinutes;
-  final int initialSeconds;
-  late bool isRunning = false;
-
-   TimerWidget({
-    required this.initialMinutes,
-    required this.initialSeconds,
-    required this.isRunning,
-    super.key,
-  });
-
-  @override
-  _TimerWidgetState createState() => _TimerWidgetState();
-}
-
-class _TimerWidgetState extends State<TimerWidget> {
-  int minutes = 0;
-  int seconds = 0;
-  late bool isRunning = false;
-  Timer? timer;
-
-  @override
-  void initState() {
-    super.initState();
-    minutes = widget.initialMinutes;
-    seconds = widget.initialSeconds;
-  }
-
-  void startTicking() {
-    isRunning = true;
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (minutes > 0 || seconds > 0) {
-        if (seconds == 0) {
-          minutes--;
-          seconds = 59;
-        } else {
-          seconds--;
-        }
-
-        setState(() {});
-      } else {
-        // Time's up: Game over
-        timer.cancel();
-        print('Game over');
-        // Add game over screen logic here
-      }
-    });
-  }
-
-  void stopTicking() {
-    isRunning = false;
-    timer?.cancel();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      child: Text(
-        '$minutes:$seconds',
-        style: const TextStyle(
-          fontFamily: 'montserrat',
-          fontSize: 24,
-        ),
-      ),
-    );
-  }
-}

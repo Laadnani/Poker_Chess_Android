@@ -18,8 +18,7 @@ class VsComnpcScreenState extends State<VsComnpcScreen> {
   Widget build(BuildContext context) {
     // Reading values from providers
     final gameController = context.watch<GameController>();
-    final authController = context.watch<AuthController>();
-    final playerController = context.watch<PlayerController>();
+    
 
     return Scaffold(
       appBar: AppBar(

@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.1.2
   dropdown_button2: ^2.3.9
   timer_count_down: ^2.2.2
+  vibration: ^1.8.4
 
 dev_dependencies:
   flutter_test:

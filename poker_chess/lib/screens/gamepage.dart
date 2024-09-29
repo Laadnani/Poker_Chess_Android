@@ -24,6 +24,8 @@ late bishop.Game game;
   int player = Squares.white;
   bool aiThinking = false;
   bool flipBoard = false;
+  
+
 
   @override
   void initState() {
@@ -82,12 +84,12 @@ late bishop.Game game;
              ),
 
             Padding(
-              padding:  EdgeInsets.all(4.0),
+              padding:  const EdgeInsets.all(4.0),
               child: BoardController(
                 state: flipBoard ? state.board.flipped() : state.board,
                 playState: state.state,
                 pieceSet: PieceSet.merida(),
-                theme: BoardTheme.brown,
+                theme: BoardTheme.blueGrey,
                 moves: state.moves,
                 onMove: _onMove,
                 onPremove: _onMove,
@@ -110,6 +112,7 @@ late bishop.Game game;
                     print('Selected Time: ${provider.addedTime}');
                     print('Selected Time: ${provider.chips}');
                     print('Selected Time: ${provider.gameLevel}');
+                 
                     
 
            

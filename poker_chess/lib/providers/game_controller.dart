@@ -69,9 +69,7 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // set the gametime 
+  // set the gametime
 
-  late String gameTime = '${extractFirstWord(timing)} : 00';
-
- 
+  late int gameTime = int.parse(timing.replaceAll(RegExp(r'[^0-9]'), ''));
 }
